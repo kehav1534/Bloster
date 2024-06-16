@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{%block title%}Sign-Up | Bloster{%endblock%}
+{%block body%}
+<form method="post" action="{%url 'user:signup'%}">
+    {%csrf_token%}
+    
+    {{signup_form}}
+    {% if signup_form.errors %}
+    {% for field in signup_form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in signup_form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+<button>Save</button>
+</form>
+{%endblock%}

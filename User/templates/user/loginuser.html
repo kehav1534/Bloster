@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{%block title%}Login | Bloster{%endblock%}
+{%block body%}
+<form method="post" action="{%url 'user:login'%}">
+    {{login_form}}
+    {%csrf_token%}
+{%if request.GET.next%}
+    <input type="hidden" name="next" value="{{request.GET.next}}">
+{%endif%}
+    <button>Save</button>
+
+</form>
+{%endblock%}

@@ -1,0 +1,127 @@
+<html data-bs-theme="dark">
+    <head>
+        {%load bootstrap5%}
+        {%bootstrap_css%}
+        {% bootstrap_javascript %}
+        <title>
+            {%block title%}Bloster{%endblock%}
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+
+        <nav class="navbar navbar-light bg-dark justify-content-between" style="height:7rem;">
+            <a class="navbar-brand" style="margin-left:2rem; color:yellow;font-size:3rem" href="/">Bloster</a>
+            <div class="form-inline">
+              {%if user.is_authenticated%}
+              <a href="/posts/create" titl="Create Post"><button style="border-radius:20px; width: 3rem; height:3rem; margin-right:1rem;" class="btn btn-primary"><span style="font-size:20px;padding-bottom:1rem">+</span></button></a>
+              <a href="/user/profile">
+                {% include "user/layout2.html" with nav="1"%}
+              </a>
+              <form action="/user/logout/" method="post" style="display:inline;">
+                {%csrf_token%}
+                <button style="background:none;border:none;"><img src="/media/logout.png" title='Logout' style='height:2rem;width:2rem;margin-right:1rem;'></button>
+              </form>
+              
+              {%else%}
+              <a href="/user/signup" title="Sign-Up"><button style="border-radius:50px; background:white; width: 8rem; height:3rem; margin-right:1rem;">Login</button></a>
+              {%endif%}
+              {% if messages %}
+              <div class="messages">
+              {% for message in messages %}
+              {%if message.tags == "success"%}
+
+
+              <div role="alert" aria-live="assertive" aria-atomic="true" class="toast fixed-bottom m-5 ms-auto"
+              data-bs-autohide="false">
+              <div class="toast-header">
+                  <strong class="me-auto" style="color:green;">Success</strong>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body">
+                  {{message}}
+              </div>
+          </div>
+          <script>
+              window.onload = (event) => {
+                  let myAlert = document.querySelector('.toast');
+                  let bsAlert = new bootstrap.Toast(myAlert);
+                  
+                  setTimeout(function () {
+                      bsAlert.show();
+                  }, 0);
+                  setTimeout(()=>{bsAlert.hide();},5000);
+              };
+          </script>
+              {%endif%}
+              {% endfor %}
+              </div>
+            {% endif %}
+            </div>
+          </nav>
+        
+        <div class="container">
+            <div class="row">
+                <div class="{%if recents%}col-xl-10{%else%}col-xl-12{%endif%}">
+                    <div class="row">
+                <div class="col-10 d-flex align-items-start" style="height:1rem">
+                </div>
+                {%block body%}
+                    <div class="text-center"><h1>No content</h1></div>
+                {%endblock%}
+              </div>
+            </div>
+            <div class="col col-xl-2 col-0 d-none {%if recents%}d-xl-block{%endif%}">
+                <div class="col-0 col-xl-12 d-flex align-self-center" style="margin-bottom:10px; margin-top: 10px;">
+                    <div class="card" style="width: 24rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>
+                    </div>
+                </div>
+                {% comment %} <div class="col-0 col-xl-12 d-flex align-items-start" style="margin-bottom:10px; margin-top: 10px;">
+                    <div style="width: 24rem; height:10rem">
+                    </div>
+                </div> {% endcomment %}
+                <div class="col-0 col-xl-12 d-flex  align-items-center" style="margin-bottom:10px; margin-top: 10px;">
+                    <div class="card" style="width: 24rem; ">
+                        <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">Card subtitle</h6>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        {% comment %} <div class="container text-center">
+            <div class="row">
+              <div class="col-sm-4 col-xs-12 bg-danger" >
+                1 of 2
+              </div>
+              <div class="col-sm-4 col-xs-12 bg-warning" style="marging-left:30px">
+                2 of 2
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4 col-xs-12 bg-warning" style="marging-right:30px;">
+                1 of 3
+              </div>
+              <div class="col-sm-4 col-xs-12 bg-warning" style="marging-right:30px;">
+                2 of 3
+              </div>
+              <div class="col-sm-4 col-xs-12 bg-danger" style="marging-right:30px;">
+                3 of 3
+              </div>
+            </div>
+          </div> {% endcomment %}
+    </body>
+
+</html>

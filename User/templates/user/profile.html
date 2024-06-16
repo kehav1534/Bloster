@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{%block title%}User-Profile | Bloster{%endblock%}
+{%block body%}
+<form method="post" action="">
+    {{profile_data}}
+    {%csrf_token%}
+    <button action="submit">Save</button>
+
+</form>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{%endblock%}

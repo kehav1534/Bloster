@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{%block title%}
+{{title}}
+{%endblock%}
+{%block body%}
+<form action="{{act}}" method='post'>
+{{postform}}
+{%if request.GET.p%}
+<input type="hidden" name="p" value="{{request.GET.p}}">
+{%endif%}
+{%csrf_token%}
+<button type="submit">Save</button>
+</form>
+{% endblock %}
