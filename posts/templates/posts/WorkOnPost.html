@@ -3,7 +3,7 @@
 {{title}}
 {%endblock%}
 {%block body%}
-<form action="{{act}}" method='post'>
+<form action="{{act}}" method='post' enctype="multipart/form-data">
 {{postform}}
 {%if request.GET.p%}
 <input type="hidden" name="p" value="{{request.GET.p}}">

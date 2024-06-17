@@ -2,7 +2,7 @@
 
 {%block title%}User-Profile | Bloster{%endblock%}
 {%block body%}
-<form method="post" action="">
+<form method="post" action="/user/profile/" enctype="multipart/form-data">
     {{profile_data}}
     {%csrf_token%}
     <button action="submit">Save</button>

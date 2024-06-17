@@ -1,0 +1,13 @@
+#dashboarditem:hover{
+    background-color: #dcdcdc;
+    color: orange;
+    transition: background-color 1s ease, color 0.5s ease;
+}
+#dashboarditem{
+    padding-top: 0.5rem;
+    height:3rem;
+    margin-bottom:1rem;
+}
+hr{
+    width:70%
+}

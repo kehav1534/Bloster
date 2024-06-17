@@ -5,16 +5,23 @@
 {%endblock%}
 
 {%block body%}
-<div class="element-center">
-    {% include "user/layout2.html" %}
+<div class="text-center">
+    <h1>DashBoard</h1>
+    {% comment %} {% include "user/layout2.html" %} {% endcomment %}
 </div>
+<br>
+<br>
+<br>
+<br>
+<div class="container text-center">
 {%for posts in userposts%}
-    <h1>{{posts.title}}</h1><br>
-    <form method='get' action='/posts/edit'>
-
-        <button type='submit' name='p' value={{posts.ulink}}>{{posts.title}}</button>
-    </form>
-
+    <div class="row  justify-content-center">
+        <div class="col-8" id="dashboarditem">
+        <a href="/posts/edit/?p={{posts.ulink}}" style="text-decoration:none; color:black;"><b>{{posts.title}}</b></a> 
+        </div>
+        <hr class="justify-content-center col-8">
+    </div>
 {%endfor%}
+</div>
 
 {%endblock%}
