@@ -3,6 +3,7 @@ from django.http import HttpResponse, Http404
 from . import forms
 from . import models
 from django.contrib.auth.decorators import login_required
+from User.models import UserProfile
 
 def to_homepage(request):
     return redirect('/')
@@ -23,7 +24,8 @@ def createpost(request):
     
 def showpost(request, ulink):
     post = get_object_or_404(models.postModel, ulink=ulink)
-    return render(request, 'posts/ViewPost.html', {'data':post})
+    author = get_object_or_404(UserProfile, user=post.author)
+    return render(request, 'posts/ViewPost.html', {'data':post, 'author':author})
     
 
 @login_required(login_url="/user/login/")

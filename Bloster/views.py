@@ -1,9 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
+from posts import models
 
 def homePage(request):
-    return render(request, 'layout.html')
+    published_posts = models.postModel.objects.filter(status='p').order_by("-creation_date")
+    
+    return render(request, 'homepage.html', {'posts':published_posts})
 
 def about(request):
     return HttpResponse('This is About Page.')

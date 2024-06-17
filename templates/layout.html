@@ -11,20 +11,31 @@
         {%load static%}
 <link href="{%static 'User/css/style.css'%}" rel="stylesheet">
     </head>
-    <body>
+    <body style="background-color:#FAF4D3;">
 
         <nav class="navbar navbar-light bg-dark justify-content-between" style="height:7rem;">
             <a class="navbar-brand" style="margin-left:2rem; color:yellow;font-size:3rem" href="/">Bloster</a>
             <div class="form-inline">
               {%if user.is_authenticated%}
+              {% comment %} <a href="/user/profile" style="text-decoration:none;">
+                
+              </a> {% endcomment %}
+              <div class="dropdown" style="display: inline;">
+                <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false" style="background: none; border:none;">
+                  {% include "user/layout2.html" with nav="1"%}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="margin-top:2rem;margin-right:1rem; width:5rem;">
+                  <li><a class="dropdown-item" href="/user/profile/">Profile</a></li>
+                  <li><a class="dropdown-item" href="/user/dashboard/">Dashboard</a></li>
+                  <li><form action="/user/logout/" method="post" style="display:inline;">
+                    {%csrf_token%}
+                    <button style="background:none;border:none;color:red ;" id="logout"><img src="/media/logout.jpg" title='Logout' style='height:1rem;width:1rem;margin-right:1rem;'>Log Out</button>
+                  </form>
+                </li>
+                </ul>
+              </div>
               <a href="/posts/create/" titl="Create Post"><button style="border-radius:20px; width: 3rem; height:3rem; margin-right:1rem;" class="btn btn-primary"><span style="font-size:20px;padding-bottom:1rem">+</span></button></a>
-              <a href="/user/profile">
-                {% include "user/layout2.html" with nav="1"%}
-              </a>
-              <form action="/user/logout/" method="post" style="display:inline;">
-                {%csrf_token%}
-                <button style="background:none;border:none;"><img src="/media/logout.png" title='Logout' style='height:2rem;width:2rem;margin-right:1rem;'></button>
-              </form>
+              
               
               {%else%}
               <a href="/user/login" title="Login"><button style="border-radius:50px; background:white; width: 8rem; height:3rem; margin-right:1rem;">Login</button></a>
