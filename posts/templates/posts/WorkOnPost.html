@@ -4,11 +4,37 @@
 {%endblock%}
 {%block body%}
 <form action="{{act}}" method='post' enctype="multipart/form-data">
-{{postform}}
+<br>
+<br>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-xl-6 justify-content-center">
+                {{postform.title}}
+            </div>
+        </div>
+        <br>
+        <div class="row justify-content-md-center">
+            <div class="col-xl-6 justify-content-center">
+                {{postform.content}}
+            </div>
+        </div>
+        <br>
+        <div class="row justify-content-md-center">
+            <div class="col-xl-6 justify-content-center">
+                {{postform.image}}
+            </div>
+        </div>
+        <br>
+        <div class="row justify-content-md-center">
+            <div class="col-xl-2 col-12 align-items-center">
+                <button type="submit" style="width:15rem;height:3rem;border-radius:50px;" class="justify-content-center">Save</button>
+            </div>
+        </div>
+    </div>
+
 {%if request.GET.p%}
 <input type="hidden" name="p" value="{{request.GET.p}}">
 {%endif%}
 {%csrf_token%}
-<button type="submit">Save</button>
 </form>
 {% endblock %}

@@ -14,13 +14,28 @@
 <br>
 <br>
 <div class="container text-center">
+{%if not userposts%}
+<br>
+<br>
+<br>
+<h3 class="text-center font-monospace">You haven't posted anything yet.</h3>
+<br>
+<a href="/posts/create/" titl="Create Post"><button style="border-radius:20px; width: 3rem; height:3rem; margin-right:1rem; border-style:dashed;background:none;border-width:4px;border-color:#632A0f;" title="Add Post"><span style="font-size:20px;padding-bottom:1rem;color:#632A0f;">+</span></button></a>
+
+{%endif%}
 {%for posts in userposts%}
-    <div class="row  justify-content-center">
-        <div class="col-8" id="dashboarditem">
-        <a href="/posts/edit/?p={{posts.ulink}}" style="text-decoration:none; color:black;"><b>{{posts.title}}</b></a> 
+    <div class="row  justify-content-center flex-wrap">
+        <div class="col-md-8 col-xs-12 text-start d-flex justify-content-between flex-wrap" id="dashboarditem">
+            <a href="/posts/{{posts.ulink}}" style="text-decoration:none; color:black;"><b>{{posts.title}}</b></a>
+        <div class="d-flex justify-content-end">
+            <a href="/posts/{{posts.ulink}}" style="text-decoration:none; color:black;"><button style="background:none;border:0;"><img src='/media/eye.png'></button></a>
+            <a href="/posts/edit/?p={{posts.ulink}}" style="text-decoration:none; color:black;"><button style="background:none;border:0;"><img src='/media/pencil.png'></button></a> 
+            {% comment %} <button style="background-color:red;border:0;"><img src='/media/delete.png' style="height:1.5rem;width:1.75rem;"></button> {% endcomment %}
+        </div>    
         </div>
-        <hr class="justify-content-center col-8">
+        
     </div>
+    <hr class="justify-content-center col-10">
 {%endfor%}
 </div>
 

@@ -24,9 +24,12 @@ def createpost(request):
     
 def showpost(request, ulink):
     post = get_object_or_404(models.postModel, ulink=ulink)
-    author = get_object_or_404(UserProfile, user=post.author)
-    return render(request, 'posts/ViewPost.html', {'data':post, 'author':author})
-    
+    if post.status=='d' and post.author!=request.user:
+        raise Http404
+    else:
+        author = get_object_or_404(UserProfile, user=post.author)
+        return render(request, 'posts/ViewPost.html', {'data':post, 'author':author})
+        
 
 @login_required(login_url="/user/login/")
 def editpost(request):
@@ -41,7 +44,7 @@ def editpost(request):
                 
                 ##here need to redirect it to post in view mode.
                 
-        else:Http404('No such post is found.')
+        else:raise Http404
     elif request.method=='POST':
         p=request.POST.get('p')
         post = get_object_or_404(models.postModel,author=request.user, ulink=p)

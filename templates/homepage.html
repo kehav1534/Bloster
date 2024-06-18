@@ -2,11 +2,11 @@
 {%block body%}
 {% for card in  posts%}
 <div class="col-sm-6 col-xs-12 col-md-4 d-flex align-items-start" style="margin-bottom:10px; margin-top: 10px;">
-    <a href="{%url "posts:viewpost" ulink=card.ulink%}">
-    <div class="card" style="width: 22rem; height:25rem">
+    <a href="{%url "posts:viewpost" ulink=card.ulink%}" style="text-decoration:none;">
+    <div class="card" style="width: 20rem; height:18rem; background-color:#b57457">
         <img class="card-img-top" src={{card.image.url}} alt={{card.title}} style="height:60%;">
         <div class="card-body">
-          <p class="card-text">{{card.title}}</p>
+          <p class="card-text" style="color:white;">{{card.title}}</p>
           <p class="card-text"><small class="text-muted text-end">{{card.dateTime}}</small><p>
         </div>
     </div>
