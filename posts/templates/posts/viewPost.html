@@ -25,9 +25,17 @@
     </div>
     
     <div class="row justify-content-md-center" style="border-right:0; border-left:0; border-bottom:0; border-style:solid;">
+        <div class="col-xl-8 col-10 justify-content-center font-monospace" style="border-right:5px; border-left:5px; border-top:0;border-bottom:0; border-style:solid;">
+            <div style="margin:1rem;margin-bottom:0;">
+                {%if data.image and data.image != 'blank.png'%}
+                <img src="{{data.image.url}}" alt="{{data.title}}" style="height:80%; width:100%;">
+                {%endif%}
+                </div>
+        </div>
         <div class="col-xl-8 col-10 justify-content-center font-monospace" style="border-right:5px; border-left:5px; border-top:0; border-style:solid;">
-            <div style="margin:1rem;">{{data.content}}</div>
-
+                <br>
+                {{data.content}}<br><br><br><br></div>
+                
         </div>
     </div>
 </div>
